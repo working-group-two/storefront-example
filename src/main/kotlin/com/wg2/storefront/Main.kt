@@ -8,6 +8,7 @@ fun main() {
 
     val app = Javalin.create {
         it.staticFiles.enableWebjars()
+        it.staticFiles.add("/public")
         it.accessManager(AccessManager::manage)
         it.jetty.sessionHandler(AccessManager::sessionHandler)
     }.routes {
