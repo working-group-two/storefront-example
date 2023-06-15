@@ -1,4 +1,4 @@
-package com.wg2.storefront
+package com.wg2.storefront.auth
 
 import io.javalin.http.Context
 import io.javalin.http.Handler

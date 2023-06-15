@@ -1,6 +1,6 @@
-package com.wg2.storefront.service
+package com.wg2.storefront
 
-import com.wg2.storefront.Config
+import com.wg2.storefront.auth.AuthInterceptor
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import java.util.concurrent.TimeUnit

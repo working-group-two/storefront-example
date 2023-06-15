@@ -6,6 +6,7 @@ import io.javalin.http.NotFoundResponse
 object ProductController {
 
     fun listAvailableProducts(ctx: Context) {
+        //TODO need to know subscriber tenant
         ctx.json(ProductService.listProducts())
     }
 

@@ -1,5 +1,6 @@
-package com.wg2.storefront.service
+package com.wg2.storefront.sms
 
+import com.wg2.storefront.GrpcShared
 import com.wgtwo.api.v1.sms.SmsProto
 import com.wgtwo.api.v1.sms.SmsServiceGrpc
 import org.slf4j.LoggerFactory

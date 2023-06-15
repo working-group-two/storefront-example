@@ -1,7 +1,7 @@
 package com.wg2.storefront.signin
 
-import com.wg2.storefront.AccessManager
-import com.wg2.storefront.service.SmsService
+import com.wg2.storefront.auth.AccessManager
+import com.wg2.storefront.sms.SmsService
 import io.javalin.http.Context
 import io.javalin.http.InternalServerErrorResponse
 import io.javalin.http.UnauthorizedResponse

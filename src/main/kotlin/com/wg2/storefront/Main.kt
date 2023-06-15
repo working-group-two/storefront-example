@@ -1,7 +1,9 @@
 package com.wg2.storefront
 
+import com.wg2.storefront.auth.AccessManager
+import com.wg2.storefront.auth.Role
+import com.wg2.storefront.consents.ConsentController
 import com.wg2.storefront.products.ProductController
-import com.wg2.storefront.service.GrpcShared
 import com.wg2.storefront.signin.SigninHandler
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
@@ -24,6 +26,9 @@ fun main() {
             path("/auth") {
                 post("/send-pin", SigninHandler::sendPin, Role.ANY)
                 post("/validate-pin", SigninHandler::validatePin, Role.ANY)
+            }
+            path("/consents") {
+                get(ConsentController::listConsentsForSubscriber, Role.SIGNED_IN)
             }
             path("/products") {
                 get(ProductController::listAvailableProducts, Role.SIGNED_IN)

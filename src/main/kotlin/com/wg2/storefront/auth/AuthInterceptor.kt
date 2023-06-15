@@ -1,4 +1,4 @@
-package com.wg2.storefront.service
+package com.wg2.storefront.auth
 
 import com.wgtwo.auth.WgtwoAuth
 import io.grpc.CallOptions
