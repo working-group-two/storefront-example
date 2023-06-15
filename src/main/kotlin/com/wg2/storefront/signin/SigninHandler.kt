@@ -1,11 +1,6 @@
 package com.wg2.storefront.signin
 
-<<<<<<< HEAD
 import com.wg2.storefront.AccessManager
-import io.javalin.http.BadRequestResponse
-=======
-import com.wg2.storefront.service.SmsService
->>>>>>> 6914735 (rot)
 import io.javalin.http.Context
 import io.javalin.http.InternalServerErrorResponse
 import io.javalin.http.UnauthorizedResponse
