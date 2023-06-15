@@ -1,8 +1,6 @@
 <template id="sign-in">
   <div class="sign-in">
-    <div class="logo">
-      <wotel-logo></wotel-logo>
-    </div>
+    <wotel-logo class="big-logo"></wotel-logo>
     <div class="signin-screen">
       <div v-if="!pinSent">
         <p>Enter your mobile number and we'll send you a PIN code to make sure you're you.</p>
@@ -95,11 +93,11 @@ Vue.component("sign-in", {
 }
 
 .signin-screen {
-  padding: 16px;
+  padding: 20px;
 }
 
 .signin-screen .next-field {
-  margin-top: 16px;
+  margin-top: 32px;
 }
 
 @media screen and (min-width: 769px) {
@@ -109,7 +107,7 @@ Vue.component("sign-in", {
   }
 }
 
-.sign-in .logo svg {
+.big-logo {
   height: 80px;
   margin: 48px auto 32px;
   display: block;
