@@ -16,10 +16,7 @@
         </next-field>
       </div>
       <div v-if="pinSent">
-        <p>Please enter the PIN that we sent to <code>{{phoneNumber}}</code>.
-          <br>
-          Wrong number? <a @click="resetForm">Go back</a>.
-        </p>
+        <p>Please enter the PIN that we sent to <strong>{{phoneNumber}}</strong>.</p>
         <next-field
             v-model="pin"
             placeholder="Ex: '1234'"
@@ -28,8 +25,10 @@
             type="tel"
             autocomplete="off"
             key="pin"
+            maxlength="4"
         >
         </next-field>
+        <p class="is-size-7">Wrong number? <a @click="resetForm">Go back</a>.</p>
       </div>
     </div>
   </div>
@@ -49,7 +48,7 @@ Vue.component("sign-in", {
       this.sendingPin = true;
       axios.post("/api/auth/send-pin?phoneNumber=" + this.phoneNumber).then(() => {
         this.pinSent = true;
-        this.focusFirst(".next-field input");
+        setTimeout(() => this.$el.querySelector("input").focus(), 0);
       }).catch(() => {
         this.$buefy.dialog.alert({
           type: 'is-danger',
@@ -60,12 +59,12 @@ Vue.component("sign-in", {
     validatePin() {
       this.validatingPin = true;
       axios.post("/api/auth/validate-pin?pin=" + this.pin).then(res => {
-        window.location = res.data || "/my-account"
+        location.href = "/";
       }).catch(e => {
         this.$buefy.dialog.confirm({
           type: 'is-danger',
-          message: 'Failed to validate your PIN, please try again.',
-          onConfirm: () => e.response.status === 401 ? this.resetForm() : ""
+          message: 'Failed to validate your PIN, please start over.',
+          onConfirm: () => this.resetForm()
         });
       }).finally(() => this.validatingPin = false)
     },
@@ -75,21 +74,20 @@ Vue.component("sign-in", {
       this.pinSent = false;
       this.pin = "";
       this.validatingPin = false;
-      this.focusFirst(".next-field input");
+      setTimeout(() => this.$el.querySelector("input").focus(), 0);
     },
   },
-  created() {
-    setInterval(() => this.phoneNumber = this.phoneNumber.replace(/[^\d+]/g, "").substr(0, 12), 100);
-    setInterval(() => this.pin = this.pin.replace(/[^\d]/g, "").substr(0, 4), 100);
-  }
 });
 </script>
 <style>
-
-.sign-in {
-  height: 100vh;
+html {
   background: #f5f5f5;
-  overflow: auto;
+}
+
+.big-logo {
+  height: 80px;
+  margin: 48px auto 32px;
+  display: block;
 }
 
 .signin-screen {
@@ -100,17 +98,14 @@ Vue.component("sign-in", {
   margin-top: 32px;
 }
 
+.signin-screen .help.counter {
+  display: none;
+}
+
 @media screen and (min-width: 769px) {
   .signin-screen {
     max-width: 360px;
     margin: 0 auto;
   }
 }
-
-.big-logo {
-  height: 80px;
-  margin: 48px auto 32px;
-  display: block;
-}
-
 </style>
