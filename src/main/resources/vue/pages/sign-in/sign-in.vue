@@ -16,7 +16,7 @@
         </next-field>
       </div>
       <div v-if="pinSent">
-        <p>Please enter the PIN that we sent to <strong>{{phoneNumber}}</strong>.</p>
+        <p>Please enter the PIN that we sent to <strong>{{ phoneNumber }}</strong>.</p>
         <next-field
             v-model="pin"
             placeholder="Ex: '1234'"
@@ -49,21 +49,21 @@ Vue.component("sign-in", {
       axios.post("/api/auth/send-pin?phoneNumber=" + this.phoneNumber).then(() => {
         this.pinSent = true;
         setTimeout(() => this.$el.querySelector("input").focus(), 0);
-      }).catch(() => {
-        this.$buefy.dialog.alert({
-          type: 'is-danger',
-          message: 'Failed to send PIN to your number, please try again.',
-        });
+      }).catch(err => {
+        const message = err.response.status === 401
+            ? "You are not authorized to sign in, contact your operator to enable Wotel Storefront"
+            : "Failed to send PIN to your number, please try again.";
+        this.$buefy.dialog.alert({type: "is-danger", message: message});
       }).finally(() => this.sendingPin = false)
     },
     validatePin() {
       this.validatingPin = true;
       axios.post("/api/auth/validate-pin?pin=" + this.pin).then(res => {
         location.href = "/";
-      }).catch(e => {
+      }).catch(err => {
         this.$buefy.dialog.confirm({
-          type: 'is-danger',
-          message: 'Failed to validate your PIN, please start over.',
+          type: "is-danger",
+          message: "Failed to validate your PIN, please start over.",
           onConfirm: () => this.resetForm()
         });
       }).finally(() => this.validatingPin = false)
@@ -80,10 +80,6 @@ Vue.component("sign-in", {
 });
 </script>
 <style>
-html {
-  background: #f5f5f5;
-}
-
 .big-logo {
   height: 80px;
   margin: 48px auto 32px;

@@ -10,10 +10,6 @@
 Vue.component("app-frame", {template: "#app-frame"});
 </script>
 <style>
-html {
-  background: #f5f5f5;
-}
-
 .app-content {
   padding: 20px;
   background: #fff;
