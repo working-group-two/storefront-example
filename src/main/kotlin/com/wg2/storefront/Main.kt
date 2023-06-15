@@ -15,7 +15,7 @@ fun main() {
         it.accessManager(AccessManager::manage)
         it.jetty.sessionHandler(AccessManager::sessionHandler)
     }.routes {
-        get("/") { ctx -> ctx.result("Hello World") }
+        get("/", { ctx -> ctx.result("You've signed in") }, Role.SIGNED_IN)
         get("/sign-in", VueComponent("sign-in"), Role.ANY)
         path("/api") {
             path("/auth") {
