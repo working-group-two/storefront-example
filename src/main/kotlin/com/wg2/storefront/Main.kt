@@ -1,5 +1,6 @@
 package com.wg2.storefront
 
+import com.wg2.storefront.products.ProductController
 import com.wg2.storefront.signin.SigninHandler
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
@@ -15,12 +16,15 @@ fun main() {
         it.accessManager(AccessManager::manage)
         it.jetty.sessionHandler(AccessManager::sessionHandler)
     }.routes {
-        get("/", { ctx -> ctx.result("You've signed in") }, Role.SIGNED_IN)
-        get("/sign-in", VueComponent("sign-in"), Role.ANY)
+        get("/", VueComponent("storefront-page"), Role.SIGNED_IN)
+        get("/sign-in", VueComponent("sign-in-page"), Role.ANY)
         path("/api") {
             path("/auth") {
                 post("/send-pin", SigninHandler::sendPin, Role.ANY)
                 post("/validate-pin", SigninHandler::validatePin, Role.ANY)
+            }
+            path("/products") {
+                get(ProductController::listAvailableProducts, Role.SIGNED_IN)
             }
         }
     }.start(Config.port)

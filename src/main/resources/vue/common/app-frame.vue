@@ -2,7 +2,9 @@
   <div class="app-frame">
     <main class="app-content">
       <wotel-logo class="wotel-logo"></wotel-logo>
-      <slot></slot>
+      <div class="page-content">
+        <slot></slot>
+      </div>
     </main>
   </div>
 </template>
@@ -30,6 +32,10 @@ Vue.component("app-frame", {template: "#app-frame"});
     margin: 0 auto;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-content {
+    margin-top: 20px;
   }
   
 }

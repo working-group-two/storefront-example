@@ -1,5 +1,5 @@
-<template id="sign-in">
-  <div class="sign-in">
+<template id="sign-in-page">
+  <div class="sign-in-page">
     <wotel-logo class="big-logo"></wotel-logo>
     <div class="signin-screen">
       <div v-if="!pinSent">
@@ -34,8 +34,8 @@
   </div>
 </template>
 <script>
-Vue.component("sign-in", {
-  template: "#sign-in",
+Vue.component("sign-in-page", {
+  template: "#sign-in-page",
   data: () => ({
     phoneNumber: "",
     sendingPin: false,
