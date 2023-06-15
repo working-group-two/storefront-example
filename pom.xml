@@ -154,7 +154,7 @@
                     <jdkVersion>17</jdkVersion>
                     <appName>wotel-store</appName>
                     <processTypes>
-                        <web>java -jar -Xmx400m ./target/storefront-example-1.0.0-SNAPSHOT.jar</web>
+                        <web>java -jar -Xmx400m ./target/storefront-example.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>

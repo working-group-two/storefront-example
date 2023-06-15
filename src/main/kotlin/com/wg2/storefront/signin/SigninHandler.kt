@@ -1,6 +1,7 @@
 package com.wg2.storefront.signin
 
 import com.wg2.storefront.AccessManager
+import com.wg2.storefront.service.SmsService
 import io.javalin.http.Context
 import io.javalin.http.InternalServerErrorResponse
 import io.javalin.http.UnauthorizedResponse
@@ -29,8 +30,10 @@ object SigninHandler {
         try {
             logger.info("Sending SMS to $phoneNumber: $smsContent")
             // send sms
+            SmsService.sendToSubscriber(phoneNumber!!, smsContent)
             ctx.status(200)
         } catch (e: Exception) {
+            logger.error("Error sending PIN", e)
             throw UnauthorizedResponse() // needs to be enabled by operator
             throw InternalServerErrorResponse() // use for any other kind of error
         }

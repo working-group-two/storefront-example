@@ -1,6 +1,7 @@
 package com.wg2.storefront
 
 import com.wg2.storefront.products.ProductController
+import com.wg2.storefront.service.GrpcShared
 import com.wg2.storefront.signin.SigninHandler
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
@@ -31,6 +32,7 @@ fun main() {
 
     Runtime.getRuntime().addShutdownHook(Thread {
         app.stop()
+        GrpcShared.close()
     })
 
 }

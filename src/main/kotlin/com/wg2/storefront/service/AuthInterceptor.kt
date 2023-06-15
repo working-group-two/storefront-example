@@ -7,7 +7,7 @@ import io.grpc.ClientCall
 import io.grpc.ClientInterceptor
 import io.grpc.MethodDescriptor
 
-class AuthInterceptor(val isSandbox: Boolean, clientId: String, clientSecret: String) : ClientInterceptor {
+class AuthInterceptor(clientId: String, clientSecret: String) : ClientInterceptor {
 
     private val tokenSource = WgtwoAuth.builder(clientId, clientSecret).build()
         .clientCredentials.newTokenSource("sms.text:send_to_subscriber")
@@ -17,7 +17,7 @@ class AuthInterceptor(val isSandbox: Boolean, clientId: String, clientSecret: St
         callOptions: CallOptions,
         next: Channel,
     ): ClientCall<ReqT, RespT> {
-        if (isSandbox) return next.newCall(method, callOptions) // Don't add token for sandbox
         return next.newCall(method, callOptions.withCallCredentials(tokenSource.callCredentials()))
     }
+
 }
