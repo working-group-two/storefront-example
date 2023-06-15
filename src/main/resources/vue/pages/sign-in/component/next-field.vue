@@ -1,6 +1,6 @@
 <template id="next-field">
   <div class="next-field">
-    <b-field class="next-field">
+    <b-field class="next-field" type="is-info">
       <b-input
           v-bind="$attrs"
           :value="value"
@@ -10,7 +10,7 @@
       >
       </b-input>
     </b-field>
-    <button class="button is-primary" :class="{'is-loading' : loading}" @click="action">
+    <button class="button is-info" :class="{'is-loading' : loading}" @click="action">
       <b-icon icon="chevron-right"></b-icon>
     </button>
   </div>
@@ -24,6 +24,9 @@ Vue.component("next-field", {
 <style>
 .next-field {
   position: relative;
+}
+.next-field .icon.is-right.has-text-info {
+  display: none;
 }
 
 .next-field .button {

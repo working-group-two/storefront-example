@@ -7,11 +7,13 @@
         <div class="product-icon">
           <img :src="product.iconUrl" alt="Product icon"/>
         </div>
-        <div class="product-name-and-description">
-          <div class="product-name">{{ product.name }}</div>
-          <div class="product-description">{{ product.description }}</div>
+        <div class="info-and-price">
+          <div class="product-name-and-description">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-description">{{ product.description }}</div>
+          </div>
+          <div class="product-price">${{ product.price }}</div>
         </div>
-        <div class="product-price">${{ product.price }}</div>
       </div>
     </div>
   </app-frame>
@@ -27,11 +29,20 @@ Vue.component("storefront-page", {
 </script>
 <style>
 .product-card {
+  height: 100px;
   display: flex;
   align-items: center;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.info-and-price {
+  width: calc(100% - 100px);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .product-card + .product-card {
@@ -40,30 +51,26 @@ Vue.component("storefront-page", {
 
 .product-card .product-icon {
   position: relative;
-  border-radius: 4px;
+  border-radius: 2px;
+  height: 100px;
   width: 100px;
-  margin-right: 20px;
   overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.product-card .product-icon::after {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.025);
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.product-description {
+  font-size: 0.8em;
+  color: #666;
+  padding-right: 8px;
 }
 
-.product-name {
-  font-size: 1.2em;
+.product-name, .product-price {
   font-weight: bold;
 }
 
-.product-price {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-left: auto;
+@media (min-width: 480px) {
+  .product-name, .product-price {
+    font-size: 1.2em;
+  }
 }
 </style>

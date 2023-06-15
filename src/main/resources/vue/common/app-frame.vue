@@ -1,7 +1,12 @@
 <template id="app-frame">
   <div class="app-frame">
     <main class="app-content">
-      <wotel-logo class="wotel-logo"></wotel-logo>
+      <div class="app-bar">
+        <wotel-logo class="wotel-logo"></wotel-logo>
+        <button class="button is-info is-rounded is-outlined">
+          <b-icon icon="account-settings"></b-icon>
+        </button>
+      </div>
       <div class="page-content">
         <slot></slot>
       </div>
@@ -16,10 +21,21 @@ Vue.component("app-frame", {template: "#app-frame"});
   padding: 20px;
   background: #fff;
   max-width: 800px;
+  min-height: 100vh;
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .wotel-logo {
   max-height: 40px;
+}
+
+.page-content {
+  margin-top: 20px;
 }
 
 @media (min-width: 480px) {
@@ -30,13 +46,10 @@ Vue.component("app-frame", {template: "#app-frame"});
 
   .app-content {
     margin: 0 auto;
-    border-radius: 4px;
+    border-radius: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: auto;
   }
 
-  .page-content {
-    margin-top: 20px;
-  }
-  
 }
 </style>
