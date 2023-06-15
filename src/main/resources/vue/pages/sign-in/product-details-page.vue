@@ -1,0 +1,43 @@
+<template id="product-details-page">
+  <app-frame class="product-details-page">
+    <div v-if="product.loading">Loading ...</div>
+    <div v-if="product.loadError">Error loading product</div>
+    <div v-if="product.loaded">
+      <div class="product-page">
+        <img :src="product.data.bannerUrl" class="product-banner" alt="Product banner"/>
+        <div class="product-name">{{ product.data.name }}</div>
+        <div class="product-description">{{ product.data.description }}</div>
+        <b-button type="is-info is-fullwidth" class="mt-5" @click="buy">Buy for ${{ product.data.price }}</b-button>
+      </div>
+    </div>
+  </app-frame>
+</template>
+<script>
+Vue.component("product-details-page", {
+  template: "#product-details-page",
+  data: () => ({
+    product: new LoadableData(`/api/products/${JavalinVue.pathParams["productId"]}`)
+  }),
+  methods: {
+    buy() {
+      this.$buefy.toast.open({
+        message: "Coming soon!",
+      });
+    }
+  },
+});
+</script>
+<style>
+.product-banner {
+  border-radius: 2px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+</style>

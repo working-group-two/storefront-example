@@ -18,6 +18,7 @@ fun main() {
         it.jetty.sessionHandler(AccessManager::sessionHandler)
     }.routes {
         get("/", VueComponent("storefront-page"), Role.SIGNED_IN)
+        get("/p/{productId}", VueComponent("product-details-page"), Role.SIGNED_IN)
         get("/sign-in", VueComponent("sign-in-page"), Role.ANY)
         path("/api") {
             path("/auth") {
@@ -26,6 +27,9 @@ fun main() {
             }
             path("/products") {
                 get(ProductController::listAvailableProducts, Role.SIGNED_IN)
+                path("{productId}") {
+                    get(ProductController::listOne, Role.SIGNED_IN)
+                }
             }
         }
     }.start(Config.port)

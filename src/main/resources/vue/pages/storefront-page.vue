@@ -3,7 +3,7 @@
     <div v-if="products.loading">Loading ...</div>
     <div v-if="products.loadError">Error loading products</div>
     <div v-if="products.loaded">
-      <div class="product-card" v-for="product in products.data">
+      <a class="product-card" v-for="product in products.data" :href=`/p/${product.id}`>
         <div class="product-icon">
           <img :src="product.iconUrl" alt="Product icon"/>
         </div>
@@ -14,7 +14,7 @@
           </div>
           <div class="product-price">${{ product.price }}</div>
         </div>
-      </div>
+      </a>
     </div>
   </app-frame>
 </template>

@@ -6,6 +6,10 @@ html {
     background-color: #f5f5f5;
 }
 
+a {
+    color: #333;
+}
+
 .dialog {
     padding: 20px;
     justify-content: flex-end;

@@ -2,7 +2,7 @@ package com.wg2.storefront.products
 
 object ProductService {
 
-    val products = listOf(
+    private val products = listOf(
         Product(
             "1",
             "Callmaster",
@@ -23,7 +23,7 @@ object ProductService {
         ),
         Product(
             "3",
-            "Messagealot",
+            "Messyboi",
             "This is the third best product. You should buy it.",
             "https://picsum.photos/id/300/200",
             "https://picsum.photos/id/301/800/400",
@@ -31,5 +31,8 @@ object ProductService {
             true
         )
     )
+
+    fun listProducts(): List<Product> = products
+    fun getProduct(id: String): Product? = products.find { it.id == id }
 
 }

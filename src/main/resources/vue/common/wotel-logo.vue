@@ -1,5 +1,5 @@
 <template id="wotel-logo">
-  <svg viewBox="0 0 254 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <svg height="78" width="254" viewBox="0 0 254 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>wotel-logo</title>
     <desc>Created with Sketch.</desc>
     <g id="wotel-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
