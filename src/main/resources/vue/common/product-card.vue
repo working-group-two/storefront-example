@@ -9,7 +9,7 @@
         <div class="product-description">{{ product.subtitle }}</div>
       </div>
       <template v-if="showDisable && revokable">
-          <b-button type="is-danger is-outlined" @click.stop.prevent="disableProduct(product.id)">Disable</b-button>
+        <b-button type="is-danger is-outlined" @click.stop.prevent="disableProduct(product.id)">Disable</b-button>
       </template>
       <template v-if="showDisable && !revokable">
         Bundled
@@ -39,7 +39,7 @@ Vue.component("product-card", {
         hasIcon: true,
         onConfirm: () => {
           axios.delete(`/api/consents/revoke?productId=${productId}`)
-              .then(() => this.$buefy.toast.open({message: "Product disabled"}))
+              .then(() => location.href = "/profile")
               .catch(() => this.$buefy.toast.open({message: "Failed to disable product"}));
         }
       });
