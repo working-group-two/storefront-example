@@ -25,6 +25,7 @@ Vue.component("next-field", {
 .next-field {
   position: relative;
 }
+
 .next-field .icon.is-right.has-text-info {
   display: none;
 }

@@ -23,8 +23,8 @@ Vue.component("product-details-page", {
     buy() {
       let {version, id} = this.product.data
       axios.post(`/api/consents/create?productId=${id}&productVersion=${version}`)
-        .then(() => location.href="/profile")
-        .catch(() => this.$buefy.toast.open({message: "Failed to buy product"}));
+          .then(() => location.href = "/profile")
+          .catch(() => this.$buefy.toast.open({message: "Failed to buy product"}));
     }
   },
 });

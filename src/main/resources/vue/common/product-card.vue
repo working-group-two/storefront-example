@@ -55,11 +55,11 @@ Vue.component("product-card", {
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  padding: 10px 20px;
 }
 
 .info-and-price {
   width: calc(100% - 100px);
-  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,10 +72,10 @@ Vue.component("product-card", {
 .product-card .product-icon {
   position: relative;
   border-radius: 2px;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   overflow: hidden;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
 }
 
 .product-description {
