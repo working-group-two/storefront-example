@@ -1,9 +1,11 @@
 <template id="profile-page">
   <app-frame class="profile-page">
+    <h1 class="title is-5">Hi {{ $javalin.state.currentUser }}, these are your products:</h1>
     <div v-if="consents.loading || products.loading">Loading ...</div>
     <div v-if="consents.loadError || products.loadError">Error loading profile</div>
     <div v-if="consents.loaded && products.loaded">
-      <product-card v-for="product in productsThatHaveConsent" :product="product"></product-card>
+      <product-card v-for="product in productsThatHaveConsent" :product="product" :show-disable="true"></product-card>
+      <div v-if="productsThatHaveConsent.length === 0">You haven't added any products yet!</div>
     </div>
   </app-frame>
 </template>

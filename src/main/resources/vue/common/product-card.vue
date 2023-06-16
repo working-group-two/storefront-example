@@ -8,8 +8,13 @@
         <div class="product-name">{{ product.name }}</div>
         <div class="product-description">{{ product.subtitle }}</div>
       </div>
-      <div v-if="product.priceBundledUsd != 0" class="product-price">${{ product.priceBundledUsd }}</div>
-      <div v-if="product.priceBundledUsd == 0" class="product-price">Free</div>
+      <template v-if="showDisable">
+        <b-button type="is-danger is-outlined" @click.stop.prevent="disableProduct(product.id)">Disable</b-button>
+      </template>
+      <template v-if="!showDisable">
+        <div v-if="product.priceBundledUsd != 0" class="product-price">${{ product.priceBundledUsd }}</div>
+        <div v-if="product.priceBundledUsd == 0" class="product-price">Free</div>
+      </template>
     </div>
   </a>
 </template>
@@ -17,8 +22,25 @@
 Vue.component("product-card", {
   template: "#product-card",
   props: {
-    product: { type: Object, required: true }
+    product: {type: Object, required: true},
+    showDisable: {type: Boolean, default: false}
   },
+  methods: {
+    disableProduct(productId) {
+      this.$buefy.dialog.confirm({
+        title: "Disable product",
+        message: `Are you sure you want to disable ${this.product.name}?`,
+        confirmText: "Disable",
+        type: "is-danger",
+        hasIcon: true,
+        onConfirm: () => {
+          axios.delete(`/api/consents/revoke?productId=${productId}`)
+            .then(() => this.$buefy.toast.open({message: "Product disabled"}))
+            .catch(() => this.$buefy.toast.open({message: "Failed to disable product"}));
+        }
+      });
+    }
+  }
 });
 </script>
 <style>

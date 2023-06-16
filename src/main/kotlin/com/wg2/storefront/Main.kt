@@ -2,6 +2,7 @@ package com.wg2.storefront
 
 import com.wg2.storefront.auth.AccessManager
 import com.wg2.storefront.auth.Role
+import com.wg2.storefront.auth.currentUser
 import com.wg2.storefront.consents.ConsentController
 import com.wg2.storefront.products.ProductController
 import com.wg2.storefront.signin.SigninHandler
@@ -19,6 +20,7 @@ fun main() {
         it.staticFiles.add("/public")
         it.accessManager(AccessManager::manage)
         it.jetty.sessionHandler(AccessManager::sessionHandler)
+        it.vue.stateFunction = { ctx -> mapOf("currentUser" to ctx.currentUser) }
     }.routes {
         get("/sign-in", VueComponent("sign-in-page"), Role.ANY)
         get("/", VueComponent("storefront-page"), Role.SIGNED_IN)

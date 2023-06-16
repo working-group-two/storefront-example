@@ -21,9 +21,7 @@ Vue.component("product-details-page", {
   }),
   methods: {
     buy() {
-      this.$buefy.toast.open({
-        message: "Coming soon!",
-      });
+      this.$buefy.toast.open({message: "Coming soon!"});
     }
   },
 });
