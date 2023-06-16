@@ -31,8 +31,8 @@ fun main() {
             }
             path("/consents") {
                 get(ConsentController::listConsentsForSubscriber, Role.SIGNED_IN)
-                delete("/revoke", ConsentController::revokeConsentForSubscriber, Role.SIGNED_IN) // productId
-                post("/create", ConsentController::createConsentForSubscriber, Role.SIGNED_IN) // productId + productVersion
+                delete("/revoke", ConsentController::revokeConsentForSubscriber, Role.SIGNED_IN)
+                post("/create", ConsentController::createConsentForSubscriber, Role.SIGNED_IN)
             }
             path("/products") {
                 get(ProductController::listAvailableProducts, Role.SIGNED_IN)

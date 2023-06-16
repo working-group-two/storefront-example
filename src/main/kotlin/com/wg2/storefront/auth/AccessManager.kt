@@ -14,6 +14,7 @@ enum class Role : RouteRole { SIGNED_IN, ANY }
 const val USER_KEY = "current-user"
 const val LOGIN_REDIRECT_KEY = "post-login-redirect"
 val Context.currentUser: String? get() = this.sessionAttribute<String>(USER_KEY)
+val Context.signedInUser: String get() = currentUser!!
 
 object AccessManager {
 
