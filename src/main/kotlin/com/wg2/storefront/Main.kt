@@ -20,9 +20,10 @@ fun main() {
         it.accessManager(AccessManager::manage)
         it.jetty.sessionHandler(AccessManager::sessionHandler)
     }.routes {
+        get("/sign-in", VueComponent("sign-in-page"), Role.ANY)
         get("/", VueComponent("storefront-page"), Role.SIGNED_IN)
         get("/p/{productId}", VueComponent("product-details-page"), Role.SIGNED_IN)
-        get("/sign-in", VueComponent("sign-in-page"), Role.ANY)
+        get("/profile", VueComponent("profile-page"), Role.SIGNED_IN)
         path("/api") {
             path("/auth") {
                 post("/send-pin", SigninHandler::sendPin, Role.ANY)

@@ -5,9 +5,9 @@
         <a href="/">
           <wotel-logo class="wotel-logo"></wotel-logo>
         </a>
-        <button class="button is-info is-rounded is-outlined" @click="profile">
+        <a class="button is-info is-rounded is-outlined" href="/profile">
           <b-icon icon="account-settings"></b-icon>
-        </button>
+        </a>
       </div>
       <div class="page-content">
         <slot></slot>
@@ -18,13 +18,6 @@
 <script>
 Vue.component("app-frame", {
   template: "#app-frame",
-  methods: {
-    profile() {
-      this.$buefy.toast.open({
-        message: "Coming soon!",
-      });
-    },
-  }
 });
 </script>
 <style>
