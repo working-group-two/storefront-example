@@ -613,7 +613,132 @@ object ProductService {
           "status": "DRAFT"
         }
     """.trimIndent()
-    private val products = setOf(textRules, softphone, onrelay, securityNotification, spamAlert, voicebox, webfilter, wgtgtp)
+
+    val voxist = """
+        {
+          "targetUserType": "OPERATOR",
+          "name": "Smart & Personalized Voicemail",
+          "publicId": "smart-&-personalized-voicemail",
+          "version": 1,
+          "id": 344,
+          "snapshotId": 4352,
+          "organizationId": 150,
+          "submittedAt": null,
+          "acceptedAt": null,
+          "updatedAt": 1686144079.786364,
+          "deleted": null,
+          "subtitle": "Read your voicemail and custom-greet your contacts",
+          "description": "Voxist is an intelligent voicemail that replaces your carrier's inefficient voicemail. Delight callers with personalized greetings and save time by reading transcribed voicemail messages. Access messages on your phone or via email, so you never miss out.",
+          "iconImageId": 527,
+          "bannerImageId": 488,
+          "videoUrl": "https://youtu.be/7VZYHb26ep0",
+          "productUrl": "https://www.voxist.com",
+          "fullMarketAvailability": true,
+          "subscriberSupportEmailOrUrl": "support@voxist.com",
+          "operatorSupportEmailOrUrl": "support+carrier@voxist.com",
+          "supportGuideUrl": "https://www.voxist.com",
+          "privacyStatementUrl": "https://www.iubenda.com/privacy-policy/63464178",
+          "storageAndProcessingCountries": "fr,ie",
+          "additionalLegalAndPrivacyInfo": "https://www.iubenda.com/terms-and-conditions/63464178",
+          "priceBundledUsd": "0.00",
+          "preListed": false,
+          "releaseNotes": null,
+          "submittedBy": null,
+          "imageUuids": [
+            "075c0c49-c0ba-4460-884a-b54dc810602c",
+            "8ffc0a3e-3781-47a8-b023-2e505230966c",
+            "b2589993-8cc9-4094-ab5a-a58d3ba2c86c",
+            "cbd3ffa6-ba09-44b9-8f4c-5020c6d9a2f6"
+          ],
+          "availableForTenantNames": [
+            "arkessa",
+            "billion-connect",
+            "erate",
+            "esimgo",
+            "holafly",
+            "telfoni",
+            "wotel"
+          ],
+          "categoryIds": [
+            11,
+            14
+          ],
+          "oauthClientIds": [],
+          "sipIpsV4": [],
+          "databaseSmsSenderIds": [
+            {
+              "id": "579331ad-0d00-48a0-99d9-2493242d8f16",
+              "tenantNames": [
+                "arkessa",
+                "billion-connect",
+                "ckhiod-test-3at",
+                "ckhiod-test-3uk",
+                "connexion",
+                "erate",
+                "esimgo",
+                "genvoice",
+                "google-fi-at",
+                "google-fi-uk",
+                "holafly",
+                "mobius",
+                "redtea",
+                "telfoni",
+                "wireless-logic",
+                "wotel"
+              ],
+              "description": "To send OTP",
+              "valueType": "ALPHANUMERIC",
+              "value": "voxist",
+              "createdAt": 1663840170.943607,
+              "default": false
+            }
+          ],
+          "scopes": [
+            "CALL_FORWARDING_DISABLE",
+            "CALL_FORWARDING_SET_NUMBER",
+            "CALL_FORWARDING_SET_VOICEMAIL",
+            "CALL_ROUTING_WRITE",
+            "EVENTS_PERIODIC_COUNTRY_SUBSCRIBE",
+            "EVENTS_COUNTRY_CHANGE_SUBSCRIBE",
+            "EVENTS_VOICEMAIL_SUBSCRIBE",
+            "EVENTS_VOICE_SUBSCRIBE",
+            "OFFLINE_ACCESS",
+            "PHONE",
+            "VOICEMAIL_DELETE",
+            "VOICEMAIL_GET",
+            "VOICEMAIL_UPDATE",
+            "SMS_SEND_TO_SUBSCRIBER",
+            "SUBSCRIPTION_READ",
+            "SUBSCRIPTION_WRITE",
+            "SMS_TEXT_SEND_TO_SUBSCRIBER",
+            "SMS_DATA_SEND_TO_SUBSCRIBER"
+          ],
+          "organizationName": "Voxist SAS",
+          "scopeValues": [
+            "callforwarding.disable",
+            "callforwarding.to_number",
+            "callforwarding.to_voicemail",
+            "call.routing:write",
+            "events.periodic_country.subscribe",
+            "events.roaming.subscribe",
+            "events.voicemail.subscribe",
+            "events.voice.subscribe",
+            "offline_access",
+            "phone",
+            "voicemail.delete",
+            "voicemail.get",
+            "voicemail.update",
+            "sms.send.to_subscriber",
+            "subscription.read",
+            "subscription.write",
+            "sms.text:send_to_subscriber",
+            "sms.data:send_to_subscriber"
+          ],
+          "status": "DRAFT"
+        }
+    """.trimIndent()
+
+    private val products = setOf(textRules, softphone, onrelay, securityNotification, spamAlert, voicebox, webfilter, wgtgtp, voxist)
 
     fun listProducts(): String = "[" + products.joinToString(",") + "]"
     fun getProduct(id: String): String? = products.find { it.contains(""""id": $id,""") }
