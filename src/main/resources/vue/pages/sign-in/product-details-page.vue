@@ -4,10 +4,11 @@
     <div v-if="product.loadError">Error loading product</div>
     <div v-if="product.loaded">
       <div class="product-page">
-        <img :src="product.data.bannerUrl" class="product-banner" alt="Product banner"/>
+        <img :src="`https://developer.wgtwo.com/media/image/${product.data.bannerImageId}`" class="product-banner" alt="Product banner"/>
         <div class="product-name">{{ product.data.name }}</div>
         <div class="product-description">{{ product.data.description }}</div>
-        <b-button type="is-info is-fullwidth" class="mt-5" @click="buy">Buy for ${{ product.data.price }}</b-button>
+        <b-button v-if="product.data.priceBundledUsd != 0" type="is-info is-fullwidth" class="mt-5" @click="buy">Buy for ${{ product.data.priceBundledUsd }}</b-button>
+        <b-button v-if="product.data.priceBundledUsd == 0" type="is-info is-fullwidth" class="mt-5" @click="buy">Get for free</b-button>
       </div>
     </div>
   </app-frame>

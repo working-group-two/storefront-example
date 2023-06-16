@@ -5,14 +5,15 @@
     <div v-if="products.loaded">
       <a class="product-card" v-for="product in products.data" :href=`/p/${product.id}`>
         <div class="product-icon">
-          <img :src="product.iconUrl" alt="Product icon"/>
+          <img :src="`https://developer.wgtwo.com/media/image/${product.iconImageId}`" alt="Product icon"/>
         </div>
         <div class="info-and-price">
           <div class="product-name-and-description">
             <div class="product-name">{{ product.name }}</div>
-            <div class="product-description">{{ product.description }}</div>
+            <div class="product-description">{{ product.subtitle }}</div>
           </div>
-          <div class="product-price">${{ product.price }}</div>
+          <div v-if="product.priceBundledUsd != 0" class="product-price">${{ product.priceBundledUsd }}</div>
+          <div v-if="product.priceBundledUsd == 0" class="product-price">Free</div>
         </div>
       </a>
     </div>
