@@ -4,7 +4,16 @@
     <div v-if="consents.loading || products.loading">Loading ...</div>
     <div v-if="consents.loadError || products.loadError">Error loading profile</div>
     <div v-if="consents.loaded && products.loaded">
-      <product-card v-for="product in productsThatHaveConsent" :product="product" :show-disable="true"></product-card>
+      <!-- go through all consents and products and show the ones that match on consent.productId and product.id -->
+      <template v-for="consent in consents.data">
+        <product-card
+            v-for="product in products.data"
+            v-if="consent.productId == product.id"
+            :product="product"
+            :show-disable="true"
+            :revokable="consent.revokable"
+        ></product-card>
+      </template>
       <div v-if="productsThatHaveConsent.length === 0">You haven't added any products yet!</div>
     </div>
   </app-frame>
