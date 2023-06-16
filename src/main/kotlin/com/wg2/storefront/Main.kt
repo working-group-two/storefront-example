@@ -6,6 +6,7 @@ import com.wg2.storefront.consents.ConsentController
 import com.wg2.storefront.products.ProductController
 import com.wg2.storefront.signin.SigninHandler
 import io.javalin.Javalin
+import io.javalin.apibuilder.ApiBuilder.delete
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.path
 import io.javalin.apibuilder.ApiBuilder.post
@@ -29,6 +30,8 @@ fun main() {
             }
             path("/consents") {
                 get(ConsentController::listConsentsForSubscriber, Role.SIGNED_IN)
+                delete("/revoke", ConsentController::revokeConsentForSubscriber, Role.SIGNED_IN) // productId
+                post("/create", ConsentController::createConsentForSubscriber, Role.SIGNED_IN) // productId + productVersion
             }
             path("/products") {
                 get(ProductController::listAvailableProducts, Role.SIGNED_IN)
