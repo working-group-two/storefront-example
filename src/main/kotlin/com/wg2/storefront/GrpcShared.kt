@@ -20,5 +20,4 @@ object GrpcShared {
         channel.shutdown()
         channel.awaitTermination(1, TimeUnit.SECONDS)
     }
-
 }

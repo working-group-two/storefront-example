@@ -71,6 +71,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+            <version>8.13.14</version>
+        </dependency>
 
         <!-- WG2 -->
         <!-- https://mvnrepository.com/artifact/com.wgtwo.api/auth -->

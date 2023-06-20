@@ -14,7 +14,6 @@ import io.javalin.apibuilder.ApiBuilder.post
 import io.javalin.vue.VueComponent
 
 fun main() {
-
     val app = Javalin.create {
         it.staticFiles.enableWebjars()
         it.staticFiles.add("/public")
@@ -45,9 +44,10 @@ fun main() {
         }
     }.start(Config.port)
 
-    Runtime.getRuntime().addShutdownHook(Thread {
-        app.stop()
-        GrpcShared.close()
-    })
-
+    Runtime.getRuntime().addShutdownHook(
+        Thread {
+            app.stop()
+            GrpcShared.close()
+        },
+    )
 }

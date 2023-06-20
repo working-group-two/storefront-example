@@ -1,5 +1,6 @@
 package com.wg2.storefront.auth
 
+import com.wg2.storefront.PhoneNumber
 import io.javalin.http.Context
 import io.javalin.http.Handler
 import io.javalin.http.UnauthorizedResponse
@@ -13,8 +14,8 @@ enum class Role : RouteRole { SIGNED_IN, ANY }
 
 const val USER_KEY = "current-user"
 const val LOGIN_REDIRECT_KEY = "post-login-redirect"
-val Context.currentUser: String? get() = this.sessionAttribute<String>(USER_KEY)
-val Context.signedInUser: String get() = currentUser!!
+val Context.currentUser: PhoneNumber? get() = this.sessionAttribute<PhoneNumber>(USER_KEY)
+val Context.signedInUser: PhoneNumber get() = currentUser!!
 
 object AccessManager {
 
@@ -32,7 +33,7 @@ object AccessManager {
         }
     }
 
-    fun signUserIn(ctx: Context, phoneNumber: String) {
+    fun signUserIn(ctx: Context, phoneNumber: PhoneNumber) {
         if (ctx.req().getSession(false) != null) {
             ctx.req().changeSessionId()
         }
