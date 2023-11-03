@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #ECEFF1;
+}
+
+a {
+    color: #333;
+}
+
+.dialog {
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+img {
+    display: block;
+}
+
+.button {
+    text-transform: uppercase;
+    border-radius: 4px !important;
+}

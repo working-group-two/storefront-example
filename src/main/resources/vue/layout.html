@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <title>Wotel Storefront</title>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="@cdnWebjar/mdi__font/7.2.96/css/materialdesignicons.css" rel="stylesheet">
+    <link href="@cdnWebjar/buefy/0.9.21/dist/buefy.min.css" rel="stylesheet">
+    <link href="/favicon.png" rel="icon">
+    <script src="@cdnWebjar/axios/1.4.0/dist/axios.min.js"></script>
+    <script src="@cdnWebjar/vue/2.7.14/dist/vue.js"></script>
+    <script src="@cdnWebjar/buefy/0.9.21/dist/buefy.min.js"></script>
+    @componentRegistration
+    <style>@inlineFile("/vue/inline/styles.css")</style>
+</head>
+<body>
+<main id="main-vue" v-cloak>
+    @routeComponent
+</main>
+<script>
+    Vue.prototype.$javalin = window.JavalinVue;
+    new Vue({el: "#main-vue"});
+</script>
+</body>
+</html>

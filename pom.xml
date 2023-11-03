@@ -1,0 +1,181 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wg2</groupId>
+    <artifactId>storefront-example</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>com-wg2 storefront-example</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kotlin.version>1.9.10</kotlin.version>
+        <kotlin.code.style>official</kotlin.code.style>
+    </properties>
+
+    <!-- library dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin-bundle</artifactId>
+            <version>6.0.0-beta.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>vue</artifactId>
+            <version>2.7.14</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>buefy</artifactId>
+            <version>0.9.21</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>mdi__font</artifactId>
+            <version>7.2.96</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>axios</artifactId>
+            <version>1.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+            <version>8.13.14</version>
+        </dependency>
+
+        <!-- WG2 -->
+        <!-- https://mvnrepository.com/artifact/com.wgtwo.api/auth -->
+        <dependency>
+            <groupId>com.wgtwo.api</groupId>
+            <artifactId>auth</artifactId>
+            <version>0.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.wgtwo.api.v1.grpc/sms -->
+        <dependency>
+            <groupId>com.wgtwo.api.v1.grpc</groupId>
+            <artifactId>sms</artifactId>
+            <version>1.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wgtwo.api.v0.grpc</groupId>
+            <artifactId>consents</artifactId>
+            <version>0.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wgtwo.api.v0.grpc</groupId>
+            <artifactId>products</artifactId>
+            <version>0.1.10</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformers>
+                        <!-- https://github.com/grpc/grpc-java/issues/9387 -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>com.wg2.storefront.MainKt</mainClass>
+                        </transformer>
+                    </transformers>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.7</version>
+                <configuration>
+                    <jdkVersion>17</jdkVersion>
+                    <appName>wotel-store</appName>
+                    <processTypes>
+                        <web>java -jar -Xmx400m ./target/storefront-example.jar</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
