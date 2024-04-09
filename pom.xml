@@ -85,12 +85,12 @@
         <dependency>
             <groupId>com.wgtwo.api.v0.grpc</groupId>
             <artifactId>consents</artifactId>
-            <version>0.1.10</version>
+            <version>0.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.wgtwo.api.v0.grpc</groupId>
             <artifactId>products</artifactId>
-            <version>0.1.10</version>
+            <version>0.2.0</version>
         </dependency>
 
     </dependencies>
