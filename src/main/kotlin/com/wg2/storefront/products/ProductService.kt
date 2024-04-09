@@ -47,6 +47,7 @@ object ProductService {
         icon = icon.toImage(),
         banner = banner.toImage(),
         images = imagesList.map { it.toImage() }
+        // if you want to use random images, replace the above line with the following:
 //        images = (1..8).map {
 //            Image("https://picsum.photos/1024/512?random=$it")
 //        }
