@@ -1,8 +1,8 @@
 <template id="product-card">
-  <a class="product-card" :href=`/p/${product.id}`>
-<!--    <div class="product-icon">-->
-<!--      <img :src="`https://developer.wgtwo.com/media/image/${product.iconImageId}`" alt="Product icon"/>-->
-<!--    </div>-->
+  <a class="product-card" :href="`/p/${product.id}`">
+    <div class="product-icon">
+      <img :src="product.icon.url" alt="Product icon"/>
+    </div>
     <div class="info-and-price">
       <div class="product-name-and-description">
         <div class="product-name">{{ product.name }}</div>
