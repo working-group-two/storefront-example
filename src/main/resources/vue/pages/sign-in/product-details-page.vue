@@ -7,7 +7,7 @@
         <div class="product-page">
           <img :src="product.data.banner.url" class="product-banner" alt="Product banner"/>
           <div class="product-name">{{ product.data.name }}</div>
-          <div class="product-images">
+          <div v-if="product.data.images.length > 0" class="product-images">
             <ul>
               <li v-for="image in product.data.images" :key="image.url">
                 <img :src="image.url" alt="Product image" width="400px" />
